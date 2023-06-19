@@ -1,10 +1,7 @@
 package com.avv2050soft.fooddelivery.presentation.ui.menu
 
 import android.content.Context
-import android.provider.Settings.Secure.getString
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.avv2050soft.fooddelivery.R

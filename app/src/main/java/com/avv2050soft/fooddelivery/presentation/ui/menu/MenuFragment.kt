@@ -77,13 +77,10 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-                if (firstVisibleItemPosition == 0) {
-                    // Прокрутка вверх, сдвигаем recyclerViewTopBanner вверх
-                    binding.recyclerViewTopBanner.translationY =
-                        -binding.recyclerViewMeals.computeVerticalScrollOffset().toFloat()
+                if (firstVisibleItemPosition <= 3) {
+                    binding.recyclerViewTopBanner.visibility = View.VISIBLE
                 } else {
-                    // recyclerViewCategories достиг верха экрана, оставляем его вверху
-                    binding.recyclerViewTopBanner.translationY = 0f
+                    binding.recyclerViewTopBanner.visibility = View.GONE
                 }
             }
         })

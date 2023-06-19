@@ -20,7 +20,9 @@ class CategoriesAdapter(
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         val item = getItem(position)
         holder.binding.textViewCategoryName.text = item.strCategory
-        holder.binding.root.setOnClickListener { onClickItem.invoke(item) }
+        holder.binding.root.setOnClickListener {
+            onClickItem.invoke(item)
+        }
     }
 }
 
