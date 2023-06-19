@@ -71,18 +71,5 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         viewModel.message.launchAndCollectIn(viewLifecycleOwner) {
             toastString(it)
         }
-
-        binding.recyclerViewMeals.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
-                if (firstVisibleItemPosition <= 3) {
-                    binding.recyclerViewTopBanner.visibility = View.VISIBLE
-                } else {
-                    binding.recyclerViewTopBanner.visibility = View.GONE
-                }
-            }
-        })
     }
 }
