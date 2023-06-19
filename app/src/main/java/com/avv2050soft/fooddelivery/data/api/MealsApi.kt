@@ -1,5 +1,7 @@
 package com.avv2050soft.fooddelivery.data.api
 
+//https://www.themealdb.com/api.php
+
 import com.avv2050soft.fooddelivery.domain.models.categories.Categories
 import com.avv2050soft.fooddelivery.domain.models.meals.Meals
 import okhttp3.OkHttpClient
