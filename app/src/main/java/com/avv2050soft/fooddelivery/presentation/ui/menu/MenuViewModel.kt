@@ -13,6 +13,7 @@ import com.avv2050soft.fooddelivery.domain.repository.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,15 +26,15 @@ class MenuViewModel @Inject constructor(
 
     private var topBannerList = listOf<TopBanner>()
     private val _topBannerListStateFlow = MutableStateFlow(topBannerList)
-    val topBannerListStateFlow = _topBannerListStateFlow
+    val topBannerListStateFlow = _topBannerListStateFlow.asStateFlow()
 
     private var categories = listOf<Category>()
     private val _categoriesStateFlow = MutableStateFlow(categories)
-    val categoriesStateFlow = _categoriesStateFlow
+    val categoriesStateFlow = _categoriesStateFlow.asStateFlow()
 
     private var meals = listOf<Meal>()
     private val _mealsStateFlow = MutableStateFlow(meals)
-    val mealsStateFlow = _mealsStateFlow
+    val mealsStateFlow = _mealsStateFlow.asStateFlow()
 
     private val _message = Channel<String>()
     val message = _message.receiveAsFlow()
