@@ -10,7 +10,7 @@ import com.avv2050soft.fooddelivery.domain.models.categories.Category
 
 class CategoriesAdapter(
     private val onClickItem: (Category) -> Unit
-) : ListAdapter<Category, CategoriesViewHolder>(DiffUtilCategories()) {
+) : ListAdapter<Category, CategoriesAdapter.CategoriesViewHolder>(DiffUtilCategories()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         return CategoriesViewHolder(
             ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,15 +24,17 @@ class CategoriesAdapter(
             onClickItem.invoke(item)
         }
     }
+
+    class CategoriesViewHolder(val binding: ItemCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    class DiffUtilCategories : DiffUtil.ItemCallback<Category>() {
+        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean =
+            oldItem.idCategory == newItem.idCategory
+
+        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean =
+            oldItem == newItem
+    }
 }
 
-class DiffUtilCategories : DiffUtil.ItemCallback<Category>() {
-    override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean =
-        oldItem.idCategory == newItem.idCategory
 
-    override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean =
-        oldItem == newItem
-}
-
-class CategoriesViewHolder(val binding: ItemCategoryBinding) :
-    RecyclerView.ViewHolder(binding.root)

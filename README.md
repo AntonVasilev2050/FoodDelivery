@@ -1,6 +1,6 @@
 Видео демонстрация:
 
-https://drive.google.com/file/d/17mHzK7g_Bbzgi2VtF-gMmskqPm46tSSG/view?usp=sharing
+https://drive.google.com/file/d/17pDMIeCUxZfqGIlAPW7lp6Ct0LbtMs1P/view?usp=sharing
 
 Скриншоты:
 

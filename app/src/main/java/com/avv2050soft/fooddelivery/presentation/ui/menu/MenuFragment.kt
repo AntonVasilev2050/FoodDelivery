@@ -50,23 +50,23 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     }
 
     private val mealsAdapter = MealsAdapter(
-        onClickItem = { meal: Meal, imageView: ImageView, textView: TextView ->
+        onClickItem = { meal: Meal, imageViewMealPicture: ImageView, textViewMealName: TextView ->
             onMealItemClick(
                 meal,
-                imageView,
-                textView,
+                imageViewMealPicture,
+                textViewMealName,
             )
         }
     )
 
     private fun onMealItemClick(
         meal: Meal,
-        imageView: ImageView,
-        textView: TextView
+        imageViewMealPicture: ImageView,
+        textViewMealName: TextView
     ) {
         val extras = FragmentNavigatorExtras(
-            imageView to resources.getString(R.string.meal_image_transition_name),
-            textView to resources.getString(R.string.meal_name_transition_name),
+            imageViewMealPicture to resources.getString(R.string.meal_image_transition_name),
+            textViewMealName to resources.getString(R.string.meal_name_transition_name),
             )
         val bundle = Bundle()
         bundle.putString(MEAL_URL_KEY, meal.strMealThumb)

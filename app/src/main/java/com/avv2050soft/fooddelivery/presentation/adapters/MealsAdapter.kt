@@ -15,7 +15,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 class MealsAdapter(
     private val onClickItem: (Meal, ImageView, TextView) -> Unit
-) : ListAdapter<Meal, MealsViewHolder>(DiffUtilMeals()) {
+) : ListAdapter<Meal, MealsAdapter.MealsViewHolder>(DiffUtilMeals()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealsViewHolder {
         return MealsViewHolder(
             ItemMealBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -50,14 +50,17 @@ class MealsAdapter(
             }
         }
     }
+
+    class MealsViewHolder(val binding: ItemMealBinding) : RecyclerView.ViewHolder(binding.root)
+
+    class DiffUtilMeals : DiffUtil.ItemCallback<Meal>() {
+        override fun areItemsTheSame(oldItem: Meal, newItem: Meal): Boolean =
+            oldItem.idMeal == newItem.idMeal
+
+        override fun areContentsTheSame(oldItem: Meal, newItem: Meal): Boolean =
+            oldItem == newItem
+    }
 }
 
-class DiffUtilMeals : DiffUtil.ItemCallback<Meal>() {
-    override fun areItemsTheSame(oldItem: Meal, newItem: Meal): Boolean =
-        oldItem.idMeal == newItem.idMeal
 
-    override fun areContentsTheSame(oldItem: Meal, newItem: Meal): Boolean =
-        oldItem == newItem
-}
 
-class MealsViewHolder(val binding: ItemMealBinding) : RecyclerView.ViewHolder(binding.root)
