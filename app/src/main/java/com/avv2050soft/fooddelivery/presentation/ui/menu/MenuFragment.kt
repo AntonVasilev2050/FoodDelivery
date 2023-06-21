@@ -2,11 +2,13 @@ package com.avv2050soft.fooddelivery.presentation.ui.menu
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.avv2050soft.fooddelivery.R
 import com.avv2050soft.fooddelivery.databinding.FragmentMenuBinding
@@ -17,9 +19,13 @@ import com.avv2050soft.fooddelivery.presentation.adapters.CategoriesAdapter
 import com.avv2050soft.fooddelivery.presentation.adapters.MealsAdapter
 import com.avv2050soft.fooddelivery.presentation.adapters.TopBannersAdapter
 import com.avv2050soft.fooddelivery.presentation.utils.launchAndCollectIn
+import com.avv2050soft.fooddelivery.presentation.utils.showAppbarAndBottomView
 import com.avv2050soft.fooddelivery.presentation.utils.toastString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
+const val MEAL_URL_KEY = "meal url key"
+const val MEAL_NAME_KEY = "meal name key"
 
 @AndroidEntryPoint
 class MenuFragment : Fragment(R.layout.fragment_menu) {
@@ -44,15 +50,39 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     }
 
     private val mealsAdapter = MealsAdapter(
-        onClickItem = { meal: Meal -> onMealItemClick(meal) }
+        onClickItem = { meal: Meal, imageView: ImageView, textView: TextView ->
+            onMealItemClick(
+                meal,
+                imageView,
+                textView,
+            )
+        }
     )
 
-    private fun onMealItemClick(meal: Meal) {
-        toastString("${meal.idMeal} was clicked")
+    private fun onMealItemClick(
+        meal: Meal,
+        imageView: ImageView,
+        textView: TextView
+    ) {
+        val extras = FragmentNavigatorExtras(
+            imageView to resources.getString(R.string.meal_image_transition_name),
+            textView to resources.getString(R.string.meal_name_transition_name),
+            )
+        val bundle = Bundle()
+        bundle.putString(MEAL_URL_KEY, meal.strMealThumb)
+        bundle.putString(MEAL_NAME_KEY, meal.strMeal)
+        findNavController().navigate(
+            R.id.action_menuFragment_to_mealDetailsFragment,
+            bundle,
+            navigatorExtras = extras,
+            navOptions = null
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        showAppbarAndBottomView(requireActivity())
 
         viewModel.topBannerListStateFlow.launchAndCollectIn(viewLifecycleOwner) {
             viewModel.loadTopBanner()

@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">FoodDelivery</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="menu">Menu</string>
     <string name="profile">Profile</string>
     <string name="cart">Cart</string>
@@ -10,4 +7,8 @@
     <string name="an_error_occurred_while_getting_categories">An error occurred while getting categories</string>
     <string name="an_error_occurred_while_getting_topbannerlist">An error occurred while getting topBannerList</string>
     <string name="an_error_occurred_while_getting_meal_list">An error occurred while getting meal list</string>
+    <string name="meal_details">Meal Details</string>
+    <string name="meal_image_transition_name">Meal image transition name</string>
+    <string name="meal_name_transition_name">Meal name transition name</string>
+    <string name="the_big_picture_of_the_meal">The big picture of the meal</string>
 </resources>

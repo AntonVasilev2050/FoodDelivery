@@ -2,17 +2,19 @@ package com.avv2050soft.fooddelivery.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.avv2050soft.fooddelivery.R
 import com.avv2050soft.fooddelivery.databinding.ItemMealBinding
 import com.avv2050soft.fooddelivery.domain.models.meals.Meal
-import com.avv2050soft.fooddelivery.presentation.utils.loremIpsum
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 class MealsAdapter(
-    private val onClickItem: (Meal) -> Unit
+    private val onClickItem: (Meal, ImageView, TextView) -> Unit
 ) : ListAdapter<Meal, MealsViewHolder>(DiffUtilMeals()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealsViewHolder {
         return MealsViewHolder(
@@ -39,7 +41,13 @@ class MealsAdapter(
                 append((item.idMeal.toInt() / 100).toString())
                 append(" Rub")
             }
-            root.setOnClickListener { onClickItem.invoke(item) }
+            root.setOnClickListener {
+                imageViewMealPicture.transitionName =
+                    imageViewMealPicture.context.getString(R.string.meal_image_transition_name)
+                textViewMealName.transitionName =
+                    textViewMealName.context.getString(R.string.meal_name_transition_name)
+                onClickItem.invoke(item, imageViewMealPicture, textViewMealName)
+            }
         }
     }
 }
