@@ -1,5 +1,6 @@
 package com.avv2050soft.fooddelivery.presentation.ui.menu
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -21,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MenuViewModel @Inject constructor(
     private val repository: MealsRepository,
-    private val context: Context
+    private val context: Application
 ) : ViewModel() {
 
     private var topBannerList = listOf<TopBanner>()
@@ -82,5 +83,4 @@ class MenuViewModel @Inject constructor(
             }
         }
     }
-
 }
